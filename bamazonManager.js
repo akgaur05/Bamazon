@@ -127,7 +127,7 @@ function addNewProduct(){
         var deptNames = [];
       
         //grab name of departments
-       connection.query('SELECT DISTINCT(department_name) FROM products', function(err, res){
+       connection.query('SELECT * FROM Departments', function(err, res){
           if(err) throw err;
           for(var i = 0; i<res.length; i++){
             deptNames.push(res[i].department_name);

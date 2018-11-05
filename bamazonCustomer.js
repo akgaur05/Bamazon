@@ -28,7 +28,7 @@ function showProducts() {
         console.log('----------------------------------------------------------------------------------------------------');
         console.log('_.~"~._.~"~._.~Welcome to BAMazon~._.~"~._.~"~._');
         console.log('----------------------------------------------------------------------------------------------------');
-        displayTableValues(res, 10, {
+        displayTableValues(res, res.length, {
             "item_id": 0,
             "product_name": undefined,
             "price": 2
@@ -71,7 +71,9 @@ function showProducts() {
                 if (availableQty >= howMuchToBuy) {
                     //after purchase, updates quantity in Products
                     connection.query("UPDATE Products SET ? WHERE ?", [
-                        { stock_quantity: (res[whatToBuy].stock_quantity - howMuchToBuy) },
+                        { stock_quantity: (res[whatToBuy].stock_quantity - howMuchToBuy),
+                          product_sales:  (res[whatToBuy].product_sales + howMuchToBuy)
+                        },
                         { item_id: ans.id }
                     ], function (err, result) {
                         if (err) throw err;
