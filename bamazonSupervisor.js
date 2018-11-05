@@ -63,6 +63,7 @@ function viewProductByDept(){
       console.log("Department ID: " + res[i].department_id + " | " + "Department Name: " + res[i].department_name + " | " + "Over Head Cost: " + (res[i].over_head_costs).toFixed(2) + " | " + "Product Sales: " + (res[i].product_sales).toFixed(2) + " | " + "Total Profit: " + (res[i].total_profit).toFixed(2));
       console.log('--------------------------------------------------------------------------------------------------')
     } */
+
     start();
   })
 }
@@ -97,3 +98,10 @@ function viewProductByDept(){
       start();
     });
   }
+  function displayError(error) {
+    console.log(error.red);
+    connection.end();
+}
+function clearScreen() {
+    process.stdout.write("\033c");
+}
