@@ -19,7 +19,6 @@ connection.connect(function (error) {
     }
     console.log("connected as id " + connection.threadId);
     showProducts();
-    connection.end();
 });
 
 function showProducts() {
