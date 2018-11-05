@@ -1,5 +1,6 @@
 const displayTableValues = require("./displayData.js");
 require('dotenv').config();
+const colors = require("colors");
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 //create connection to db
@@ -47,15 +48,21 @@ function viewProductByDept(){
   'LEFT JOIN products AS p'+"\n"+
   'ON d.department_name = p.department_name'+"\n"+
   'GROUP BY d.department_id'+"\n"+
-  'ORDER BY d.department_name', function(err, res){
+  'ORDER BY d.department_id', function(err, res){
     if(err) throw err;
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~Product Sales by Department~~~~~~~~~~~~~~~~~~~~~~~~~');
     console.log('----------------------------------------------------------------------------------------------------')
-
-    for(var i = 0; i<res.length;i++){
+    displayTableValues(res, res.length, {
+        "department_id"  : 0,
+        "department_name": undefined,
+        "over_head_costs" : 2,
+        "product_sales"  : 2,
+        "total_profit"   : 2
+    });
+   /*  for(var i = 0; i<res.length;i++){
       console.log("Department ID: " + res[i].department_id + " | " + "Department Name: " + res[i].department_name + " | " + "Over Head Cost: " + (res[i].over_head_costs).toFixed(2) + " | " + "Product Sales: " + (res[i].product_sales).toFixed(2) + " | " + "Total Profit: " + (res[i].total_profit).toFixed(2));
       console.log('--------------------------------------------------------------------------------------------------')
-    }
+    } */
     start();
   })
 }
